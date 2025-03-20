@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Portal - Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body class="admin-page">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Alumni<span>Connect</span></h1>
+            </div>
+            <nav>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Alumni Dashboard</a></li>
+                    <li><a href="student_dashboard.html">Student Dashboard</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="admin.html" class="active">Admin</a></li>
+                    <li><a href="#" class="btn-logout" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <button class="mobile-menu-btn">☰</button>
+    <main>
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <h2>Admin Panel</h2>
+                <nav class="admin-nav">
+                    <ul>
+                        <li><a href="#" class="active" data-section="dashboard">Dashboard</a></li>
+                        <li><a href="#" data-section="users">User Management</a></li>
+                        <li><a href="#" data-section="content">Content Moderation</a></li>
+                        <li><a href="#" data-section="jobs">Job Postings</a></li>
+                        <li><a href="#" data-section="events">Events</a></li>
+                        <li><a href="#" data-section="reports">Reports</a></li>
+                        <li><a href="#" data-section="settings">Settings</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            
+            <!-- Main Content -->
+            <div class="admin-content">
+                <!-- Dashboard Section -->
+                <section class="admin-section active" id="dashboard">
+                    <div class="section-header">
+                        <h2>Admin Dashboard</h2>
+                        <p>Overview of platform activity and statistics</p>
+                    </div>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon users-icon">👥</div>
+                            <div class="stat-details">
+                                <h3>Total Users</h3>
+                                <p class="stat-number">1,245</p>
+                                <p class="stat-change positive">+12% this month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon alumni-icon">🎓</div>
+                            <div class="stat-details">
+                                <h3>Alumni</h3>
+                                <p class="stat-number">875</p>
+                                <p class="stat-change positive">+8% this month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon students-icon">📚</div>
+                            <div class="stat-details">
+                                <h3>Students</h3>
+                                <p class="stat-number">370</p>
+                                <p class="stat-change positive">+15% this month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon jobs-icon">💼</div>
+                            <div class="stat-details">
+                                <h3>Active Jobs</h3>
+                                <p class="stat-number">48</p>
+                                <p class="stat-change positive">+5% this month</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-row">
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <h3>Recent Activity</h3>
+                                <a href="#" class="view-all">View All</a>
+                            </div>
+                            <div class="card-content">
+                                <ul class="activity-list">
+                                    <li class="activity-item">
+                                        <div class="activity-icon">👤</div>
+                                        <div class="activity-details">
+                                            <p><strong>New User Registration:</strong> Sarah Parker (Student)</p>
+                                            <span class="activity-time">10 minutes ago</span>
+                                        </div>
+                                        <div class="activity-actions">
+                                            <button class="btn btn-small btn-outline">View</button>
+                                        </div>
+                                    </li>
+                                    <li class="activity-item">
+                                        <div class="activity-icon">💼</div>
+                                        <div class="activity-details">
+                                            <p><strong>New Job Posted:</strong> Software Engineer at Google by John Doe</p>
+                                            <span class="activity-time">2 hours ago</span>
+                                        </div>
+                                        <div class="activity-actions">
+                                            <button class="btn btn-small btn-outline">View</button>
+                                        </div>
+                                    </li>
+                                    <li class="activity-item">
+                                        <div class="activity-icon">❓</div>
+                                        <div class="activity-details">
+                                            <p><strong>New Question:</strong> "How to prepare for technical interviews?" by Michael Brown</p>
+                                            <span class="activity-time">5 hours ago</span>
+                                        </div>
+                                        <div class="activity-actions">
+                                            <button class="btn btn-small btn-outline">View</button>
+                                        </div>
+                                    </li>
+                                    <li class="activity-item">
+                                        <div class="activity-icon">🔗</div>
+                                        <div class="activity-details">
+                                            <p><strong>New Connection:</strong> Jane Smith connected with David Kim</p>
+                                            <span class="activity-time">Yesterday</span>
+                                        </div>
+                                        <div class="activity-actions">
+                                            <button class="btn btn-small btn-outline">View</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <h3>Pending Approvals</h3>
+                                <a href="#" class="view-all">View All</a>
+                            </div>
+                            <div class="card-content">
+                                <ul class="approval-list">
+                                    <li class="approval-item">
+                                        <div class="approval-details">
+                                            <h4>Account Verification</h4>
+                                            <p>Emily Johnson (Alumni) - Requesting verification</p>
+                                            <span class="approval-time">1 day ago</span>
+                                        </div>
+                                        <div class="approval-actions">
+                                            <button class="btn btn-small btn-primary">Approve</button>
+                                            <button class="btn btn-small btn-outline">Reject</button>
+                                        </div>
+                                    </li>
+                                    <li class="approval-item">
+                                        <div class="approval-details">
+                                            <h4>Job Posting</h4>
+                                            <p>Data Scientist at Amazon - Posted by Michael Chen</p>
+                                            <span class="approval-time">2 days ago</span>
+                                        </div>
+                                        <div class="approval-actions">
+                                            <button class="btn btn-small btn-primary">Approve</button>
+                                            <button class="btn btn-small btn-outline">Reject</button>
+                                        </div>
+                                    </li>
+                                    <li class="approval-item">
+                                        <div class="approval-details">
+                                            <h4>Event Creation</h4>
+                                            <p>Tech Career Fair - Created by Admin Team</p>
+                                            <span class="approval-time">3 days ago</span>
+                                        </div>
+                                        <div class="approval-actions">
+                                            <button class="btn btn-small btn-primary">Approve</button>
+                                            <button class="btn btn-small btn-outline">Reject</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-row">
+                        <div class="admin-card full-width">
+                            <div class="card-header">
+                                <h3>User Growth</h3>
+                                <div class="chart-controls">
+                                    <button class="chart-control active" data-period="week">Week</button>
+                                    <button class="chart-control" data-period="month">Month</button>
+                                    <button class="chart-control" data-period="year">Year</button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="chart-container">
+                                    <!-- Chart would be rendered here with JavaScript -->
+                                    <div class="chart-placeholder">
+                                        <p>User growth chart will be displayed here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- User Management Section -->
+                <section class="admin-section" id="users">
+                    <div class="section-header">
+                        <h2>User Management</h2>
+                        <p>Manage user accounts, approvals, and restrictions</p>
+                    </div>
+                    
+                    <div class="admin-toolbar">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search users..." id="user-search">
+                            <button class="search-btn">Search</button>
+                        </div>
+                        
+                        <div class="filter-options">
+                            <select id="user-type-filter">
+                                <option value="">All Users</option>
+                                <option value="alumni">Alumni</option>
+                                <option value="student">Students</option>
+                                <option value="admin">Admins</option>
+                            </select>
+                            
+                            <select id="user-status-filter">
+                                <option value="">All Statuses</option>
+                                <option value="active">Active</option>
+                                <option value="pending">Pending</option>
+                                <option value="restricted">Restricted</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-primary">Add New User</button>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="select-all-users">
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="user-select">
+                                    </td>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://via.placeholder.com/40x40" alt="John Doe">
+                                            <span>John Doe</span>
+                                        </div>
+                                    </td>
+                                    <td>john.doe@example.com</td>
+                                    <td><span class="badge alumni">Alumni</span></td>
+                                    <td><span class="badge active">Active</span></td>
+                                    <td>Jan 15, 2023</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-icon" title="Edit User">✏️</button>
+                                            <button class="btn-icon" title="View Profile">👁️</button>
+                                            <button class="btn-icon" title="Restrict User">🚫</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="user-select">
+                                    </td>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://via.placeholder.com/40x40" alt="Sarah Parker">
+                                            <span>Sarah Parker</span>
+                                        </div>
+                                    </td>
+                                    <td>sarah.parker@example.com</td>
+                                    <td><span class="badge student">Student</span></td>
+                                    <td><span class="badge pending">Pending</span></td>
+                                    <td>Mar 10, 2023</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-icon" title="Edit User">✏️</button>
+                                            <button class="btn-icon" title="View Profile">👁️</button>
+                                            <button class="btn-icon" title="Approve User">✓</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="user-select">
+                                    </td>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://via.placeholder.com/40x40" alt="Michael Brown">
+                                            <span>Michael Brown</span>
+                                        </div>
+                                    </td>
+                                    <td>michael.brown@example.com</td>
+                                    <td><span class="badge student">Student</span></td>
+                                    <td><span class="badge active">Active</span></td>
+                                    <td>Feb 22, 2023</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-icon" title="Edit User">✏️</button>
+                                            <button class="btn-icon" title="View Profile">👁️</button>
+                                            <button class="btn-icon" title="Restrict User">🚫</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="user-select">
+                                    </td>
+                                    <td>
+                                        <div class="user-info">
+                                            <img src="https://via.placeholder.com/40x40" alt="Jane Smith">
+                                            <span>Jane Smith</span>
+                                        </div>
+                                    </td>
+                                    <td>jane.smith@example.com</td>
+                                    <td><span class="badge alumni">Alumni</span></td>
+                                    <td><span class="badge restricted">Restricted</span></td>
+                                    <td>Dec 5, 2022</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-icon" title="Edit User">✏️</button>
+                                            <button class="btn-icon" title="View Profile">👁️</button>
+                                            <button class="btn-icon" title="Activate User">✓</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="table-footer">
+                        <div class="bulk-actions">
+                            <select id="bulk-action">
+                                <option value="">Bulk Actions</option>
+                                <option value="approve">Approve Selected</option>
+                                <option value="restrict">Restrict Selected</option>
+                                <option value="delete">Delete Selected</option>
+                            </select>
+                            <button class="btn btn-outline">Apply</button>
+                        </div>
+                        
+                        <div class="pagination">
+                            <button class="pagination-btn prev-page" disabled>Previous</button>
+                            <div class="pagination-numbers">
+                                <button class="pagination-number active">1</button>
+                                <button class="pagination-number">2</button>
+                                <button class="pagination-number">3</button>
+                            </div>
+                            <button class="pagination-btn next-page">Next</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Content Moderation Section -->
+                <section class="admin-section" id="content">
+                    <div class="section-header">
+                        <h2>Content Moderation</h2>
+                        <p>Review and moderate user-generated content</p>
+                    </div>
+                    
+                    <div class="admin-tabs">
+                        <button class="tab-btn active" data-tab="reported">Reported Content</button>
+                        <button class="tab-btn" data-tab="pending">Pending Review</button>
+                        <button class="tab-btn" data-tab="approved">Recently Approved</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="reported">
+                        <div class="admin-card full-width">
+                            <div class="card-content">
+                                <ul class="content-list">
+                                    <li class="content-item">
+                                        <div class="content-header">
+                                            <div class="content-type">
+                                                <span class="badge post">Post</span>
+                                            </div>
+                                            <div class="content-meta">
+                                                <span>Reported by: <strong>3 users</strong></span>
+                                                <span>Posted: <strong>2 days ago</strong></span>
+                                            </div>
+                                        </div>
+                                        <div class="content-body">
+                                            <p class="content-author">Posted by: <strong>Anonymous User</strong></p>
+                                            <div class="content-text">
+                                                <p>This is an example of reported content that may violate community guidelines...</p>
+                                            </div>
+                                        </div>
+                                        <div class="content-actions">
+                                            <button class="btn btn-small btn-outline">View Full Content</button>
+                                            <button class="btn btn-small btn-primary">Approve</button>
+                                            <button class="btn btn-small btn-danger">Remove</button>
+                                            <button class="btn btn-small btn-outline">Warn User</button>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="content-item">
+                                        <div class="content-header">
+                                            <div class="content-type">
+                                                <span class="badge comment">Comment</span>
+                                            </div>
+                                            <div class="content-meta">
+                                                <span>Reported by: <strong>1 user</strong></span>
+                                                <span>Posted: <strong>1 day ago</strong></span>
+                                            </div>
+                                        </div>
+                                        <div class="content-body">
+                                            <p class="content-author">Posted by: <strong>Michael Brown</strong></p>
+                                            <div class="content-text">
+                                                <p>This is an example of a reported comment...</p>
+                                            </div>
+                                        </div>
+                                        <div class="content-actions">
+                                            <button class="btn btn-small btn-outline">View Full Content</button>
+                                            <button class="btn btn-small btn-primary">Approve</button>
+                                            <button class="btn btn-small btn-danger">Remove</button>
+                                            <button class="btn btn-small btn-outline">Warn User</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="pending">
+                        <!-- Pending content would go here -->
+                    </div>
+                    
+                    <div class="tab-content" id="approved">
+                        <!-- Approved content would go here -->
+                    </div>
+                </section>
+                
+                <!-- Other sections would go here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Alumni<span>Connect</span></h2>
+                    <p>Bridging the gap between alumni and students.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Alumni Dashboard</a></li>
+                        <li><a href="student_dashboard.html">Student Dashboard</a></li>
+                        <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@alumniconnect.edu</p>
+                    <p>Phone: (123) 456-7890</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">TW</a>
+                        <a href="#" class="social-icon">IN</a>
+                        <a href="#" class="social-icon">IG</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AlumniConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

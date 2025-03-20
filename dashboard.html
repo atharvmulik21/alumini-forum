@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Dashboard - Alumni Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Alumni<span>Portal</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Alumni Dashboard</a></li>
+                    <li><a href="student_dashboard.html">Student Dashboard</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">Alumni Dashboard</h2>
+                <a href="profile.html" class="btn btn-primary">Edit Profile</a>
+            </div>
+            <div class="dashboard-grid">
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-image">
+                    <div class="profile-info">
+                        <h3 id="profile-name">John Doe</h3>
+                        <p id="profile-title">Software Engineer at Tech Company</p>
+                        <div class="profile-links">
+                            <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                            <a href="#"><i class="fas fa-envelope"></i> Email</a>
+                        </div>
+                        <p>Class of 2018</p>
+                        <p>Computer Science</p>
+                    </div>
+                </div>
+                <div class="dashboard-content">
+                    <div class="dashboard-tabs">
+                        <div class="dashboard-tab active" data-tab="posts">My Posts</div>
+                        <div class="dashboard-tab" data-tab="jobs">My Job Postings</div>
+                        <div class="dashboard-tab" data-tab="mentorship">Mentorship</div>
+                    </div>
+                    <div id="posts" class="tab-content active">
+                        <div class="form-group">
+                            <label for="post-content">Share an update, advice, or career tip</label>
+                            <textarea id="post-content" class="form-control" rows="4" placeholder="What's on your mind?"></textarea>
+                        </div>
+                        <button id="post-btn" class="btn btn-primary">Post Update</button>
+                        
+                        <div class="posts-list" style="margin-top: 2rem;">
+                            <div class="post-item" style="background-color: var(--light-gray); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <div class="post-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <div class="post-author">You</div>
+                                    <div class="post-date">2 days ago</div>
+                                </div>
+                                <div class="post-content">
+                                    Just completed a major project at work using the latest technologies we learned in our senior year. The foundation from our university courses was invaluable!
+                                </div>
+                                <div class="post-actions" style="margin-top: 1rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Edit</button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Delete</button>
+                                </div>
+                            </div>
+                            <div class="post-item" style="background-color: var(--light-gray); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <div class="post-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <div class="post-author">You</div>
+                                    <div class="post-date">1 week ago</div>
+                                </div>
+                                <div class="post-content">
+                                    Career Tip: Always keep learning and updating your skills. The tech industry moves fast, and staying current is key to success.
+                                </div>
+                                <div class="post-actions" style="margin-top: 1rem;">
+                                    <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Edit</button>
+                                    <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="jobs" class="tab-content">
+                        <a href="jobs.html#post-job" class="btn btn-primary" style="margin-bottom: 2rem;">Post New Job</a>
+                        
+                        <div class="jobs-list">
+                            <div class="job-card" style="flex-direction: column; align-items: flex-start;">
+                                <div class="job-info">
+                                    <h3>Senior Software Engineer</h3>
+                                    <div class="job-company">Tech Company - San Francisco, CA</div>
+                                    <div class="job-description" style="margin: 1rem 0;">
+                                        Looking for an experienced software engineer to join our team. Must have 5+ years of experience with modern web technologies.
+                                    </div>
+                                    <div class="job-tags">
+                                        <span class="job-tag">Full-time</span>
+                                        <span class="job-tag">Remote</span>
+                                        <span class="job-tag">Senior</span>
+                                    </div>
+                                </div>
+                                <div class="job-actions" style="margin-top: 1rem; align-self: flex-end;">
+                                    <button class="btn btn-secondary" style="margin-right: 0.5rem;">Edit</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mentorship" class="tab-content">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Students Looking for Mentorship</h3>
+                            <div class="mentorship-requests">
+                                <div class="mentorship-request" style="background-color: var(--light-gray); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <div>
+                                            <strong>Sarah Smith</strong> - Computer Science, Class of 2024
+                                        </div>
+                                        <div>2 days ago</div>
+                                    </div>
+                                    <div style="margin-bottom: 1rem;">
+                                        I'm interested in learning more about career paths in software development. Would love to get advice from someone in the industry.
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Accept Request</button>
+                                    </div>
+                                </div>
+                                <div class="mentorship-request" style="background-color: var(--light-gray); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <div>
+                                            <strong>Michael Johnson</strong> - Computer Science, Class of 2023
+                                        </div>
+                                        <div>1 week ago</div>
+                                    </div>
+                                    <div style="margin-bottom: 1rem;">
+                                        I'm working on a project using React and Node.js. Would appreciate some guidance on best practices and architecture.
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Accept Request</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">Your Current Mentees</h3>
+                            <div class="current-mentees">
+                                <div class="mentee" style="background-color: var(--light-gray); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <div>
+                                            <strong>David Lee</strong> - Computer Science, Class of 2023
+                                        </div>
+                                        <div>Mentoring since: Jan 2023</div>
+                                    </div>
+                                    <div style="margin-bottom: 1rem;">
+                                        Working on career guidance and interview preparation.
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Message</button>
+                                        <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">End Mentorship</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Alumni Portal</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Alumni</h3>
+                    <ul class="footer-links">
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="jobs.html">Post a Job</a></li>
+                        <li><a href="mentorship.html">Become a Mentor</a></li>
+                        <li><a href="events.html">Alumni Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Students</h3>
+                    <ul class="footer-links">
+                        <li><a href="student_dashboard.html">Dashboard</a></li>
+                        <li><a href="jobs.html">Find Jobs</a></li>
+                        <li><a href="mentorship.html">Find a Mentor</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Alumni Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const user = JSON.parse(currentUser);
+            
+            // Update profile information
+            document.getElementById('profile-name').textContent = user.name || 'John Doe';
+            document.getElementById('profile-title').textContent = user.title || 'Alumni';
+            
+            // Post button functionality
+            const postBtn = document.getElementById('post-btn');
+            const postContent = document.getElementById('post-content');
+            const postsList = document.querySelector('.posts-list');
+            
+            if (postBtn && postContent && postsList) {
+                postBtn.addEventListener('click', function() {
+                    if (postContent.value.trim() === '') {
+                        alert('Please enter some content for your post.');
+                        return;
+                    }
+                    
+                    // Create new post element
+                    const newPost = document.createElement('div');
+                    newPost.className = 'post-item';
+                    newPost.style.backgroundColor = 'var(--light-gray)';
+                    newPost.style.padding = '1rem';
+                    newPost.style.borderRadius = '8px';
+                    newPost.style.marginBottom = '1rem';
+                    
+                    newPost.innerHTML = `
+                        <div class="post-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <div class="post-author">You</div>
+                            <div class="post-date">Just now</div>
+                        </div>
+                        <div class="post-content">
+                            ${postContent.value}
+                        </div>
+                        <div class="post-actions" style="margin-top: 1rem;">
+                            <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Edit</button>
+                            <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">Delete</button>
+                        </div>
+                    `;
+                    
+                    // Add new post to the top of the list
+                    postsList.insertBefore(newPost, postsList.firstChild);
+                    
+                    // Clear the textarea
+                    postContent.value = '';
+                });
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

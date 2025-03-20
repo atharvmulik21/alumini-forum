@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs & Internships - Alumni Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Alumni<span>Portal</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Alumni Dashboard</a></li>
+                    <li><a href="student_dashboard.html">Student Dashboard</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Jobs Board -->
+    <section class="jobs-container">
+        <div class="container">
+            <div class="jobs-header">
+                <h2>Jobs & Internships</h2>
+                <a href="#post-job" class="btn btn-primary">Post a Job</a>
+            </div>
+            
+            <div class="search-filter">
+                <input type="text" id="job-search" placeholder="Search by title or company" class="form-control">
+                <select id="job-filter" class="form-control">
+                    <option value="all">All Categories</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="internship">Internship</option>
+                    <option value="remote">Remote</option>
+                </select>
+            </div>
+            
+            <div class="jobs-list">
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>Software Engineer</h3>
+                        <div class="job-company">Tech Company - San Francisco, CA</div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">On-site</span>
+                            <span class="job-tag">Mid-level</span>
+                        </div>
+                    </div>
+                    <div class="job-actions">
+                        <a href="#" class="btn btn-primary job-details-btn" data-job-id="1">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>Data Scientist</h3>
+                        <div class="job-company">Finance Corp - New York, NY</div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">Remote</span>
+                            <span class="job-tag">Senior</span>
+                        </div>
+                    </div>
+                    <div class="job-actions">
+                        <a href="#" class="btn btn-primary job-details-btn" data-job-id="2">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>Software Engineering Intern</h3>
+                        <div class="job-company">Tech Startup - Remote</div>
+                        <div class="job-tags">
+                            <span class="job-tag">Internship</span>
+                            <span class="job-tag">Remote</span>
+                            <span class="job-tag">Entry-level</span>
+                        </div>
+                    </div>
+                    <div class="job-actions">
+                        <a href="#" class="btn btn-primary job-details-btn" data-job-id="3">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>Product Manager</h3>
+                        <div class="job-company">Tech Giant - Seattle, WA</div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-time</span>
+                            <span class="job-tag">On-site</span>
+                            <span class="job-tag">Senior</span>
+                        </div>
+                    </div>
+                    <div class="job-actions">
+                        <a href="#" class="btn btn-primary job-details-btn" data-job-id="4">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Job Details Modal (Hidden by default) -->
+            <div id="job-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+                <div style="background-color: white; max-width: 800px; margin: 5% auto; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); position: relative; max-height: 90vh; overflow-y: auto;">
+                    <button id="close-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    <h2 id="job-title" style="color: var(--primary); margin-bottom: 1rem;"></h2>
+                    <div id="job-company-location" style="margin-bottom: 1rem; font-size: 1.1rem;"></div>
+                    <div id="job-posted-by" style="margin-bottom: 1rem; color: var(--gray);"></div>
+                    <div id="job-description" style="margin-bottom: 2rem;"></div>
+                    <div id="job-requirements" style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Requirements</h3>
+                        <ul id="requirements-list" style="padding-left: 1.5rem;"></ul>
+                    </div>
+                    <div id="job-benefits" style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Benefits</h3>
+                        <ul id="benefits-list" style="padding-left: 1.5rem;"></ul>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" id="apply-btn" class="btn btn-primary">Apply Now</a>
+                        <button id="save-job-btn" class="btn btn-secondary">Save Job</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post a Job Form -->
+            <div id="post-job" style="margin-top: 4rem;">
+                <h2 style="margin-bottom: 2rem;">Post a Job</h2>
+                <div class="form-container" style="max-width: 800px; margin: 0 auto;">
+                    <form id="post-job-form">
+                        <div class="form-group">
+                            <label for="job-title">Job Title</label>
+                            <input type="text" id="job-title" class="form-control" placeholder="e.g., Software Engineer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-company">Company</label>
+                            <input type="text" id="job-company" class="form-control" placeholder="e.g., Tech Company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-location">Location</label>
+                            <input type="text" id="job-location" class="form-control" placeholder="e.g., San Francisco, CA or Remote" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-type">Job Type</label>
+                            <select id="job-type" class="form-control" required>
+                                <option value="">Select job type</option>
+                                <option value="full-time">Full-time</option>
+                                <option value="part-time">Part-time</option>
+                                <option value="internship">Internship</option>
+                                <option value="contract">Contract</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-description">Job Description</label>
+                            <textarea id="job-description" class="form-control" rows="6" placeholder="Provide a detailed description of the job..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-requirements">Requirements (one per line)</label>
+                            <textarea id="job-requirements" class="form-control" rows="4" placeholder="e.g., Bachelor's degree in Computer Science&#10;3+ years of experience with JavaScript"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-benefits">Benefits (one per line)</label>
+                            <textarea id="job-benefits" class="form-control" rows="4" placeholder="e.g., Competitive salary&#10;Health insurance&#10;Flexible work hours"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="application-link">Application Link</label>
+                            <input type="url" id="application-link" class="form-control" placeholder="e.g., https://company.com/careers/job123">
+                        </div>
+                        <div class="form-group">
+                            <label for="application-deadline">Application Deadline</label>
+                            <input type="date" id="application-deadline" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Post Job</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Alumni Portal</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Alumni</h3>
+                    <ul class="footer-links">
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="jobs.html">Post a Job</a></li>
+                        <li><a href="mentorship.html">Become a Mentor</a></li>
+                        <li><a href="events.html">Alumni Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Students</h3>
+                    <ul class="footer-links">
+                        <li><a href="student_dashboard.html">Dashboard</a></li>
+                        <li><a href="jobs.html">Find Jobs</a></li>
+                        <li><a href="mentorship.html">Find a Mentor</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Alumni Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Job Details Modal
+            const jobDetailsBtns = document.querySelectorAll('.job-details-btn');
+            const jobModal = document.getElementById('job-modal');
+            const closeModal = document.getElementById('close-modal');
+            
+            // Sample job data (in a real app, this would come from a database)
+            const jobsData = {
+                "1": {
+                    title: "Software Engineer",
+                    company: "Tech Company",
+                    location: "San Francisco, CA",
+                    postedBy: "John Doe (Alumni, Class of 2018)",
+                    description: "We are looking for a skilled software engineer to join our team. You will be responsible for developing and maintaining our web applications, collaborating with cross-functional teams, and implementing new features.",
+                    requirements: [
+                        "Bachelor's degree in Computer Science or related field",
+                        "3+ years of experience with JavaScript and modern frameworks",
+                        "Experience with RESTful APIs and microservices",
+                        "Strong problem-solving skills and attention to detail"
+                    ],
+                    benefits: [
+                        "Competitive salary and equity package",
+                        "Health, dental, and vision insurance",
+                        "Flexible work hours and remote work options",
+                        "Professional development budget"
+                    ],
+                    applyLink: "#"
+                },
+                "2": {
+                    title: "Data Scientist",
+                    company: "Finance Corp",
+                    location: "New York, NY",
+                    postedBy: "Sarah Johnson (Alumni, Class of 2019)",
+                    description: "Join our data science team to analyze financial data, build predictive models, and provide insights to drive business decisions. You will work with large datasets and collaborate with stakeholders across the organization.",
+                    requirements: [
+                        "Master's or PhD in Statistics, Mathematics, or related field",
+                        "5+ years of experience in data science or machine learning",
+                        "Proficiency in Python, R, and SQL",
+                        "Experience with financial data analysis"
+                    ],
+                    benefits: [
+                        "Competitive salary and bonus structure",
+                        "Comprehensive benefits package",
+                        "Hybrid work model",
+                        "Continuing education opportunities"
+                    ],
+                    applyLink: "#"
+                },
+                "3": {
+                    title: "Software Engineering Intern",
+                    company: "Tech Startup",
+                    location: "Remote",
+                    postedBy: "Michael Chen (Alumni, Class of 2020)",
+                    description: "Join our engineering team for a summer internship. You will work on real projects, learn from experienced engineers, and gain valuable industry experience. This is a great opportunity for students looking to start their career in software development.",
+                    requirements: [
+                        "Currently pursuing a degree in Computer Science or related field",
+                        "Knowledge of at least one programming language (JavaScript, Python, etc.)",
+                        "Basic understanding of web development concepts",
+                        "Strong willingness to learn and collaborate"
+                    ],
+                    benefits: [
+                        "Competitive internship stipend",
+                        "Flexible remote work schedule",
+                        "Mentorship from senior engineers",
+                        "Potential for full-time offer upon graduation"
+                    ],
+                    applyLink: "#"
+                },
+                "4": {
+                    title: "Product Manager",
+                    company: "Tech Giant",
+                    location: "Seattle, WA",
+                    postedBy: "Emily Rodriguez (Alumni, Class of 2015)",
+                    description: "We are seeking an experienced product manager to lead the development of our next-generation products. You will work closely with engineering, design, and marketing teams to define product strategy and roadmap.",
+                    requirements: [
+                        "Bachelor's degree in Business, Computer Science, or related field",
+                        "5+ years of product management experience",
+                        "Strong analytical and problem-solving skills",
+                        "Excellent communication and leadership abilities"
+                    ],
+                    benefits: [
+                        "Competitive salary and stock options",
+                        "Comprehensive health benefits",
+                        "401(k) matching",
+                        "Generous vacation policy"
+                    ],
+                    applyLink: "#"
+                }
+            };
+            
+            // Open job details modal
+            jobDetailsBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const jobId = this.getAttribute('data-job-id');
+                    const job = jobsData[jobId];
+                    
+                    if (job) {
+                        document.getElementById('job-title').textContent = job.title;
+                        document.getElementById('job-company-location').textContent = `${job.company} - ${job.location}`;
+                        document.getElementById('job-posted-by').textContent = `Posted by: ${job.postedBy}`;
+                        document.getElementById('job-description').textContent = job.description;
+                        
+                        const requirementsList = document.getElementById('requirements-list');
+                        requirementsList.innerHTML = '';
+                        job.requirements.forEach(req => {
+                            const li = document.createElement('li');
+                            li.textContent = req;
+                            requirementsList.appendChild(li);
+                        });
+                        
+                        const benefitsList = document.getElementById('benefits-list');
+                        benefitsList.innerHTML = '';
+                        job.benefits.forEach(benefit => {
+                            const li = document.createElement('li');
+                            li.textContent = benefit;
+                            benefitsList.appendChild(li);
+                        });
+                        
+                        document.getElementById('apply-btn').href = job.applyLink;
+                        
+                        jobModal.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Close job details modal
+            closeModal.addEventListener('click', function() {
+                jobModal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === jobModal) {
+                    jobModal.style.display = 'none';
+                }
+            });
+            
+            // Post Job Form
+            const postJobForm = document.getElementById('post-job-form');
+            
+            if (postJobForm) {
+                postJobForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Check if user is logged in
+                    const currentUser = localStorage.getItem('currentUser');
+                    
+                    if (!currentUser) {
+                        alert('Please login to post a job.');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+                    
+                    // Get form values
+                    const title = document.getElementById('job-title').value;
+                    const company = document.getElementById('job-company').value;
+                    const location = document.getElementById('job-location').value;
+                    const type = document.getElementById('job-type').value;
+                    const description = document.getElementById('job-description').value;
+                    const requirements = document.getElementById('job-requirements').value;
+                    const benefits = document.getElementById('job-benefits').value;
+                    const applicationLink = document.getElementById('application-link').value;
+                    const deadline = document.getElementById('application-deadline').value;
+                    
+                    // Simulate job posting
+                    alert('Job posted successfully!');
+                    
+                    // Clear form
+                    postJobForm.reset();
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

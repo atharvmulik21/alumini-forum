@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Alumni Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Alumni<span>Portal</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Alumni Dashboard</a></li>
+                    <li><a href="student_dashboard.html">Student Dashboard</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Page -->
+    <section class="profile-container">
+        <div class="container">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-header-image">
+                <div class="profile-header-info">
+                    <h2 id="profile-name">John Doe</h2>
+                    <p id="profile-title">Software Engineer at Tech Company</p>
+                    <div class="profile-links">
+                        <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#"><i class="fas fa-globe"></i> Website</a>
+                        <a href="#"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                    <button id="edit-profile-btn" class="btn btn-primary" style="margin-top: 1rem;">Edit Profile</button>
+                </div>
+            </div>
+            
+            <!-- Profile Info (View Mode) -->
+            <div id="profile-info">
+                <div class="profile-sections">
+                    <div class="profile-section">
+                        <h3>About Me</h3>
+                        <p id="about-me">
+                            Experienced software engineer with a passion for building scalable web applications. Graduate of Computer Science program, class of 2018. Interested in mentoring current students and connecting with fellow alumni.
+                        </p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>Education</h3>
+                        <div class="education-item">
+                            <h4>Bachelor of Science in Computer Science</h4>
+                            <div class="education-date">2014 - 2018</div>
+                            <p>University Name</p>
+                        </div>
+                        <div class="education-item">
+                            <h4>Master of Science in Computer Science</h4>
+                            <div class="education-date">2018 - 2020</div>
+                            <p>University Name</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>Experience</h3>
+                        <div class="experience-item">
+                            <h4>Software Engineer</h4>
+                            <div class="experience-date">2020 - Present</div>
+                            <p>Tech Company</p>
+                            <p>Developing and maintaining web applications using modern JavaScript frameworks. Collaborating with cross-functional teams to deliver high-quality software.</p>
+                        </div>
+                        <div class="experience-item">
+                            <h4>Software Engineering Intern</h4>
+                            <div class="experience-date">Summer 2019</div>
+                            <p>Tech Startup</p>
+                            <p>Worked on front-end development using React. Implemented new features and fixed bugs in the company's main product.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-sections" style="margin-top: 2rem;">
+                    <div class="profile-section">
+                        <h3>Skills</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="job-tag">JavaScript</span>
+                            <span class="job-tag">React</span>
+                            <span class="job-tag">Node.js</span>
+                            <span class="job-tag">Python</span>
+                            <span class="job-tag">SQL</span>
+                            <span class="job-tag">Git</span>
+                            <span class="job-tag">AWS</span>
+                            <span class="job-tag">Docker</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>Achievements</h3>
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Published research paper on machine learning algorithms</li>
+                            <li>Won first place in university hackathon</li>
+                            <li>Contributed to open-source projects</li>
+                            <li>Mentored 5 students in software development</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>Interests</h3>
+                        <p>
+                            Machine learning, web development, open-source software, hiking, photography, and reading.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Edit Form (Hidden by default) -->
+            <div id="profile-form" style="display: none;">
+                <form id="edit-profile-form">
+                    <div class="profile-sections">
+                        <div class="profile-section">
+                            <h3>Personal Information</h3>
+                            <div class="form-group">
+                                <label for="edit-name">Full Name</label>
+                                <input type="text" id="edit-name" class="form-control" value="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-title">Title</label>
+                                <input type="text" id="edit-title" class="form-control" value="Software Engineer at Tech Company">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-about">About Me</label>
+                                <textarea id="edit-about" class="form-control" rows="4">Experienced software engineer with a passion for building scalable web applications. Graduate of Computer Science program, class of 2018. Interested in mentoring current students and connecting with fellow alumni.</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h3>Social Links</h3>
+                            <div class="form-group">
+                                <label for="edit-linkedin">LinkedIn URL</label>
+                                <input type="url" id="edit-linkedin" class="form-control" placeholder="https://linkedin.com/in/username">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-github">GitHub URL</label>
+                                <input type="url" id="edit-github" class="form-control" placeholder="https://github.com/username">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-website">Website URL</label>
+                                <input type="url" id="edit-website" class="form-control" placeholder="https://yourwebsite.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-email">Email</label>
+                                <input type="email" id="edit-email" class="form-control" placeholder="your.email@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h3>Education</h3>
+                            <div id="education-container">
+                                <div class="education-entry">
+                                    <div class="form-group">
+                                        <label>Degree</label>
+                                        <input type="text" class="form-control education-degree" value="Bachelor of Science in Computer Science">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Institution</label>
+                                        <input type="text" class="form-control education-institution" value="University Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Years</label>
+                                        <div style="display: flex; gap: 1rem;">
+                                            <input type="text" class="form-control education-start-year" value="2014" style="width: 50%;">
+                                            <input type="text" class="form-control education-end-year" value="2018" style="width: 50%;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="education-entry" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--light-gray);">
+                                    <div class="form-group">
+                                        <label>Degree</label>
+                                        <input type="text" class="form-control education-degree" value="Master of Science in Computer Science">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Institution</label>
+                                        <input type="text" class="form-control education-institution" value="University Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Years</label>
+                                        <div style="display: flex; gap: 1rem;">
+                                            <input type="text" class="form-control education-start-year" value="2018" style="width: 50%;">
+                                            <input type="text" class="form-control education-end-year" value="2020" style="width: 50%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="add-education-btn" class="btn btn-secondary" style="margin-top: 1rem;">Add Education</button>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-sections" style="margin-top: 2rem;">
+                        <div class="profile-section">
+                            <h3>Experience</h3>
+                            <div id="experience-container">
+                                <div class="experience-entry">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control experience-title" value="Software Engineer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        <input type="text" class="form-control experience-company" value="Tech Company">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Duration</label>
+                                        <input type="text" class="form-control experience-duration" value="2020 - Present">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control experience-description" rows="3">Developing and maintaining web applications using modern JavaScript frameworks. Collaborating with cross-functional teams to deliver high-quality software.</textarea>
+                                    </div>
+                                </div>
+                                <div class="experience-entry" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--light-gray);">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control experience-title" value="Software Engineering Intern">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Company</label>
+                                        <input type="text" class="form-control experience-company" value="Tech Startup">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Duration</label>
+                                        <input type="text" class="form-control experience-duration" value="Summer 2019">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control experience-description" rows="3">Worked on front-end development using React. Implemented new features and fixed bugs in the company's main product.</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="add-experience-btn" class="btn btn-secondary" style="margin-top: 1rem;">Add Experience</button>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h3>Skills</h3>
+                            <div class="form-group">
+                                <label for="edit-skills">Skills (comma separated)</label>
+                                <input type="text" id="edit-skills" class="form-control" value="JavaScript, React, Node.js, Python, SQL, Git, AWS, Docker">
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <h3>Other Information</h3>
+                            <div class="form-group">
+                                <label for="edit-achievements">Achievements (one per line)</label>
+                                <textarea id="edit-achievements" class="form-control" rows="4">Published research paper on machine learning algorithms
+Won first place in university hackathon
+Contributed to open-source projects
+Mentored 5 students in software development</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-interests">Interests</label>
+                                <textarea id="edit-interests" class="form-control" rows="3">Machine learning, web development, open-source software, hiking, photography, and reading.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" id="cancel-edit-btn" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Alumni Portal</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Alumni</h3>
+                    <ul class="footer-links">
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="jobs.html">Post a Job</a></li>
+                        <li><a href="mentorship.html">Become a Mentor</a></li>
+                        <li><a href="events.html">Alumni Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Students</h3>
+                    <ul class="footer-links">
+                        <li><a href="student_dashboard.html">Dashboard</a></li>
+                        <li><a href="jobs.html">Find Jobs</a></li>
+                        <li><a href="mentorship.html">Find a Mentor</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Alumni Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const user = JSON.parse(currentUser);
+            
+            // Update profile information
+            document.getElementById('profile-name').textContent = user.name || 'John Doe';
+            document.getElementById('profile-title').textContent = user.title || 'Alumni';
+            
+            // Edit profile functionality
+            const editProfileBtn = document.getElementById('edit-profile-btn');
+            const profileInfo = document.getElementById('profile-info');
+            const profileForm = document.getElementById('profile-form');
+            const cancelEditBtn = document.getElementById('cancel-edit-btn');
+            const editProfileForm = document.getElementById('edit-profile-form');
+            
+            if (editProfileBtn && profileInfo && profileForm && cancelEditBtn) {
+                editProfileBtn.addEventListener('click', function() {
+                    profileInfo.style.display = 'none';
+                    profileForm.style.display = 'block';
+                });
+                
+                cancelEditBtn.addEventListener('click', function() {
+                    profileInfo.style.display = 'block';
+                    profileForm.style.display = 'none';
+                });
+                
+                editProfileForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Update user information
+                    const name = document.getElementById('edit-name').value;
+                    const title = document.getElementById('edit-title').value;
+                    const about = document.getElementById('edit-about').value;
+                    
+                    // Update displayed information
+                    document.getElementById('profile-name').textContent = name;
+                    document.getElementById('profile-title').textContent = title;
+                    document.getElementById('about-me').textContent = about;
+                    
+                    // Update user in localStorage
+                    const updatedUser = {
+                        ...user,
+                        name: name,
+                        title: title,
+                        about: about
+                    };
+                    
+                    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+                    
+                    // Show profile info
+                    profileInfo.style.display = 'block';
+                    profileForm.style.display = 'none';
+                    
+                    alert('Profile updated successfully!');
+                });
+            }
+            
+            // Add education functionality
+            const addEducationBtn = document.getElementById('add-education-btn');
+            const educationContainer = document.getElementById('education-container');
+            
+            if (addEducationBtn && educationContainer) {
+                addEducationBtn.addEventListener('click', function() {
+                    const newEducation = document.createElement('div');
+                    newEducation.className = 'education-entry';
+                    newEducation.style.marginTop = '1rem';
+                    newEducation.style.paddingTop = '1rem';
+                    newEducation.style.borderTop = '1px solid var(--light-gray)';
+                    
+                    newEducation.innerHTML = `
+                        <div class="form-group">
+                            <label>Degree</label>
+                            <input type="text" class="form-control education-degree" placeholder="Enter your degree">
+                        </div>
+                        <div class="form-group">
+                            <label>Institution</label>
+                            <input type="text" class="form-control education-institution" placeholder="Enter institution name">
+                        </div>
+                        <div class="form-group">
+                            <label>Years</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <input type="text" class="form-control education-start-year" placeholder="Start year" style="width: 50%;">
+                                <input type="text" class="form-control education-end-year" placeholder="End year" style="width: 50%;">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-danger remove-education-btn" style="margin-top: 0.5rem;">Remove</button>
+                    `;
+                    
+                    educationContainer.appendChild(newEducation);
+                    
+                    // Add event listener to remove button
+                    const removeBtn = newEducation.querySelector('.remove-education-btn');
+                    removeBtn.addEventListener('click', function() {
+                        educationContainer.removeChild(newEducation);
+                    });
+                });
+            }
+            
+            // Add experience functionality
+            const addExperienceBtn = document.getElementById('add-experience-btn');
+            const experienceContainer = document.getElementById('experience-container');
+            
+            if (addExperienceBtn && experienceContainer) {
+                addExperienceBtn.addEventListener('click', function() {
+                    const newExperience = document.createElement('div');
+                    newExperience.className = 'experience-entry';
+                    newExperience.style.marginTop = '1rem';
+                    newExperience.style.paddingTop = '1rem';
+                    newExperience.style.borderTop = '1px solid var(--light-gray)';
+                    
+                    newExperience.innerHTML = `
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control experience-title" placeholder="Enter your job title">
+                        </div>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" class="form-control experience-company" placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <input type="text" class="form-control experience-duration" placeholder="e.g., 2020 - Present">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control experience-description" rows="3" placeholder="Describe your responsibilities and achievements"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-danger remove-experience-btn" style="margin-top: 0.5rem;">Remove</button>
+                    `;
+                    
+                    experienceContainer.appendChild(newExperience);
+                    
+                    // Add event listener to remove button
+                    const removeBtn = newExperience.querySelector('.remove-experience-btn');
+                    removeBtn.addEventListener('click', function() {
+                        experienceContainer.removeChild(newExperience);
+                    });
+                });
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
